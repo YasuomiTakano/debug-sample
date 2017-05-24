@@ -24,12 +24,10 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-    binding.pry # ブレークポイントを設定
-    puts "execute"
+    @user = User.new(user_param)
 
     respond_to do |format|
-      if @user.save
+      if user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -71,6 +69,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstname, :lastname, :email)
+      params.require(:user).permit(:FirstName, :LastName, :Email)
     end
 end
